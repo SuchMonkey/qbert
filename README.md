@@ -20,7 +20,7 @@
 
 **qBert** is a cross-platform system monitor that displays any kind of information on your desktop.
 
-### Features
+## Features
 
 **qBert** can display anything your browser can. It is based on [Node.js](https://nodejs.org/), [Electron](https://github.com/atom/electron) and [Polymer](https://github.com/polymer/polymer) and therefore lets you write your desktop panels with HTML, CSS and JS.
 
@@ -29,24 +29,24 @@
   * Create and share your own <custom-elements>.
   * Tough not being a strict goal you can write interactive panels if you wish to do so.
 
-### Documentation
+## Documentation
 
-## Install
+### Install
 
 ```sh
 git clone https://github.com/suchmonkey/qbert
 npm install
 ```
 
-## Usage
+### Usage
 
 ```sh
 npm run start
 ```
 
-## Getting started
+### Getting started
 
-### Configuration structure
+#### Configuration structure
 
 At the moment **qBert** looks in the following places for configuration files as defined in **/config/config.json**:
 
@@ -97,7 +97,7 @@ Here is a fully fledged configuration:
 
 Polymer elements placed under elements will get loaded automatically and can be used within your panel.
 
-### Configuration file
+#### Configuration file
 
 The configuration file contains mostly electron specific options for the window creation. Electron specific options are located under the window property. You can look up all available options [here](https://github.com/atom/electron/blob/master/docs/api/browser-window.md).
 
@@ -127,13 +127,13 @@ The config below creates a frameless, transparent window on the desktop.
 }
 ```
 
-## Build from source
+### Build from source
 
 ```sh
 npm run build
 ```
 
-## Package from source
+### Package from source
 
 NOTE: Not implemented yet
 ```sh
