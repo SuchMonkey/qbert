@@ -1,10 +1,6 @@
-<big>qBert</big>
+# qBert
 
 <p align="left">
-  <a href="https://npmjs.org/package/qbert">
-    <img src="https://img.shields.io/npm/v/qbert.svg?style=flat-square" alt="NPM Version">
-  </a>
-
   <a href="https://coveralls.io/r/SuchMonkey/qbert">
     <img src="https://img.shields.io/coveralls/SuchMonkey/qbert.svg?style=flat-square" alt="Coverage Status">
   </a>
@@ -17,7 +13,7 @@
     <img src="https://david-dm.org/SuchMonkey/qbert.svg?style=flat-square" alt="Dependency Status">
   </a>
 
-  <a href="https://github.com/SuchMonkey/qbert/blob/master/LICENSE">
+  <a href="https://github.com/SuchMonkey/qbert/blob/master/LICENSE.md">
     <img src="https://img.shields.io/npm/l/qbert.svg?style=flat-square" alt="License">
   </a>
 </p>
@@ -50,7 +46,7 @@ npm run start
 
 ## Getting started
 
-# Configuration structure
+### Configuration structure
 
 At the moment **qBert** looks in the following places for configuration files:
 
@@ -101,7 +97,7 @@ Here is a fully fledged configuration:
 
 Polymer elements placed under elements will get loaded automatically and can be used within your panel.
 
-# Configuration file
+### Configuration file
 
 The configuration file contains mostly electron specific options for the window creation. Electron specific options are located under the window property. You can look up all available options [here](https://github.com/atom/electron/blob/master/docs/api/browser-window.md).
 
@@ -152,14 +148,3 @@ You may also contribute by submitting pull requests.
 ## License
 
 MIT © [SuchMonkey](http://github.com/SuchMonkey)
-
-[travis-url]: https://travis-ci.org/SuchMonkey/qbert
-[travis-image]: https://img.shields.io/travis/SuchMonkey/qbert.svg?style=flat-square
-
-[coveralls-url]: https://coveralls.io/r/SuchMonkey/qbert
-[coveralls-image]: https://img.shields.io/coveralls/SuchMonkey/qbert.svg?style=flat-square
-
-[depstat-url]: https://david-dm.org/SuchMonkey/qbert
-[depstat-image]: https://david-dm.org/SuchMonkey/qbert.svg?style=flat-square
-
-[download-badge]: http://img.shields.io/npm/dm/qbert.svg?style=flat-square
