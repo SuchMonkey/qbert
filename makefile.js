@@ -20,13 +20,18 @@ target.build = function() {
 
 target.copy = function() {
   console.log('Copy [html, css] to %s', conf.dist)
+
+
   cd(conf.src)
 
   find('.').filter((file) => {
+    if(test('-d', file)) {
+      mkdir('-p', `../${conf.dist}${file}`)
+    }
     return file.match(/\.html$|\.css$/) && test('-f', file)
   }).forEach((file) => {
     console.log(`    ${conf.src}${file} -> ${conf.dist}${file}`)
-    cp(file, `../${conf.dist}/${file}`)
+    cp(file, `../${conf.dist}${file}`)
   })
 
 }
