@@ -1,0 +1,8 @@
+{
+  "panelConfigDirectories": [
+    ["%USERHOME%", ".config", "qbert"],
+    ["%USERHOME%", ".qbert"],
+    ["%USERHOME%", "qbert"]
+  ],
+  "panelConfigFileName": "qbert"
+}

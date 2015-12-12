@@ -3,16 +3,15 @@ import path from 'path'
 import _ from 'lodash'
 
 const DEFAULT_PANEL_CONF = getConfig(__dirname, '..', 'config', 'defaultPanelConfig.json')
+const CONFIG = getConfig(__dirname, '..', 'config', 'config.json')
 
 function getConfigPaths() {
   let userHome = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME']
 
-  return [
-    path.join(userHome, '.config', 'qbert'),
-    path.join(userHome, '.qbert'),
-    path.join(userHome, 'qbert'),
-    path.join(__dirname, '..', '.qbert'),
-  ].reduce((_configPaths, _configPath) => {
+  return CONFIG.panelConfigDirectories.map((_dirParts) => {
+    _dirParts = _dirParts.map((__dirPart) => __dirPart.replace(/\%USERHOME\%/i, userHome))
+    return path.join(..._dirParts)
+  }).reduce((_configPaths, _configPath) => {
 
     if(jetpack.exists(_configPath) == 'dir') {
       _configPaths.push(_configPath)
@@ -62,12 +61,12 @@ function getConfig(..._pathParts) {
 }
 
 function getPanelsFromPath(_panelsPath) {
-  let _globalConfig = getConfig(_panelsPath, 'panels', 'qbert.json')
+  let _globalConfig = getConfig(_panelsPath, 'panels', `${CONFIG.panelConfigFileName}.json`)
   let _globalElements = getItems(_panelsPath, 'elements')
   let _panels = getItems(_panelsPath, 'panels')
 
   _panels.map((__panel) => {
-    let __panelConfig = getConfig(__panel.path, '..', 'qbert.json')
+    let __panelConfig = getConfig(__panel.path, '..', `${CONFIG.panelConfigFileName}.json`)
     let __panelElements = getItems(__panel.path, '..', 'elements')
 
     __panel.elements = _.uniq(__panelElements.concat(_globalElements), 'name')
