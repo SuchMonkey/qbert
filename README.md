@@ -48,7 +48,7 @@ npm run start
 
 ### Configuration structure
 
-At the moment **qBert** looks in the following places for configuration files:
+At the moment **qBert** looks in the following places for configuration files as defined in **/config/config.json**:
 
   * ~/.config/qbert/
   * ~/.qbert/
