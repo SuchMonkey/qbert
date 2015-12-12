@@ -25,6 +25,7 @@ target.copy = function() {
   find('.').filter((file) => {
     return file.match(/\.html$|\.css$/) && test('-f', file)
   }).forEach((file) => {
+    console.log(`    ${conf.src}${file} -> ${conf.dist}${file}`)
     cp(file, `../${conf.dist}/${file}`)
   })
 
