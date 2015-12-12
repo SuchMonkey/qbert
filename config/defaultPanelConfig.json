@@ -1,0 +1,17 @@
+{
+  "window": {
+    "show": true,
+    "skipTaskbar": false,
+    "frame": false,
+    "transparent": false,
+    "type": "normal",
+    "resizeable": true,
+    "x": 10,
+    "y": 10,
+    "width": 1000,
+    "height": 500
+  },
+  "panel": {
+    "openDevTools": true
+  }
+}

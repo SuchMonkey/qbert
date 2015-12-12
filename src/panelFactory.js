@@ -2,7 +2,7 @@ import jetpack from 'fs-jetpack'
 import path from 'path'
 import _ from 'lodash'
 
-const DEFAULT_PANEL_CONF = getConfig(__dirname, 'defaultConfig.json')
+const DEFAULT_PANEL_CONF = getConfig(__dirname, '..', 'config', 'defaultPanelConfig.json')
 
 function getConfigPaths() {
   let userHome = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME']
@@ -85,6 +85,6 @@ export default function() {
   getConfigPaths().forEach((__configPath) => {
     _panels = _panels.concat(getPanelsFromPath(__configPath))
   })
-  
+
   return _panels
 }
