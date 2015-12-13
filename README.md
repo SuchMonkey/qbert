@@ -26,8 +26,8 @@
 
   * Use the full power of [Node.js](https://nodejs.org/) to display any kind of data you can imagine.
   * Make use of the &lt;qbert-elements&gt; based on [Polymer](https://github.com/polymer/polymer) to help you getting started writing your own desktop panels in a simple fashion.
-  * Create and share your own <custom-elements>.
-  * Tough not being a strict goal you can write interactive panels if you wish to do so.
+  * Create and share your own &lt;custom-elements&gt;.
+  * Though not being a strict goal you can write interactive panels if you wish to do so.
 
 ## Documentation
 
@@ -126,6 +126,10 @@ The config below creates a frameless, transparent window on the desktop.
   }
 }
 ```
+
+#### &lt;qbert-elements&gt;
+
+Coming soon
 
 ### Build from source
 
