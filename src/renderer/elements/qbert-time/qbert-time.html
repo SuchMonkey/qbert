@@ -1,0 +1,37 @@
+<dom-module id="qbert-time">
+  <script>
+    'use strict'
+    Polymer({
+      is: 'qbert-time',
+
+      hostAttributes: {
+        hidden: true
+      },
+
+      properties: {
+        format: String,
+        interval: {
+          type: Number,
+          value: 1
+        },
+        time: {
+          type: String,
+          notify: true
+        }
+      },
+
+      ready: function() {
+        this.execute()
+        if(this.interval >= 1) {
+          window.setInterval(this.execute.bind(this), this.interval * 1000)
+        }
+      },
+
+      moment: require('moment'),
+
+      execute: function() {
+        this.time = this.moment().format(this.format)
+      }
+    })
+  </script>
+</dom-module>

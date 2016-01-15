@@ -12,6 +12,7 @@
     "height": 500
   },
   "panel": {
-    "openDevTools": true
+    "openDevTools": true,
+    "disableInput": true
   }
 }

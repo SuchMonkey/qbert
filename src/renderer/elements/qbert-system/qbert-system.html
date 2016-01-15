@@ -1,0 +1,60 @@
+<dom-module id="qbert-system">
+  <script>
+    'use strict'
+    Polymer({
+      is: 'qbert-system',
+
+      hostAttributes: {
+        hidden: true
+      },
+
+      properties: {
+        arch: {
+          type: String,
+          notify: true
+        },
+        endian: {
+          type: String,
+          notify: true
+        },
+        homedir: {
+          type: String,
+          notify: true
+        },
+        hostname: {
+          type: String,
+          notify: true
+        },
+        osname: {
+          type: String,
+          notify: true
+        },
+        platform: {
+          type: String,
+          notify: true
+        },
+        release: {
+          type: String,
+          notify: true
+        },
+        tmpdir: {
+          type: String,
+          notify: true
+        }
+      },
+
+      ready: function() {
+        const os = require('os')
+
+        this.arch = os.arch()
+        this.endian = os.endianness()
+        this.homedir = os.homedir()
+        this.hostname = os.hostname()
+        this.osname = os.type()
+        this.platform = os.platform()
+        this.release = os.release()
+        this.tmpdir = os.tmpdir()
+      }
+    })
+  </script>
+</dom-module>

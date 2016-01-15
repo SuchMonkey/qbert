@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('head').title = `qBert - ${_panel.name}`
 
   // Load all elements
-  _panel.elements.forEach((_element) => loadItem(_element.path))
+  _panel.elements.forEach(_element => loadItem(_element.path))
 
   // Load the panel itself and append it to the body
-  loadItem(_panel.path, (doc) => document.getElementById('qbert-panel#content').appendChild(doc.body))
+  loadItem(_panel.path, doc => document.body.appendChild(doc.body))
 
   function loadItem(href, callback) {
-    Polymer.Base.importHref(href, (e) => {
+    Polymer.Base.importHref(href, e => {
       console.log('Loading item %o -> successful', e.target.import)
       if(callback) callback(e.target.import)
     }, () => {

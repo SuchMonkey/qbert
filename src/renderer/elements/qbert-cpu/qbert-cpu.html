@@ -1,0 +1,95 @@
+<dom-module id="qbert-cpu">
+  <script>
+    'use strict'
+    Polymer({
+      is: 'qbert-cpu',
+
+      hostAttributes: {
+        hidden: true
+      },
+
+      properties: {
+        interval: {
+          type: Number,
+          value: 1
+        },
+        cores: {
+          type: Array,
+          notify: true,
+          value: [
+
+          ]
+        },
+        count: {
+          type: Number,
+          notify: true
+        },
+        avgload: {
+          type: Number,
+          notify: true
+        },
+        avgspeed: {
+          type: Number,
+          notify: true
+        }
+      },
+
+      ready: function() {
+        this.execute()
+        if(this.interval < 1) {
+          this.interval = 1
+        }
+        window.setInterval(this.execute.bind(this), this.interval * 1000)
+      },
+
+      execute: function() {
+        let cpus = this.getCpus()
+
+        this.cores = cpus
+        this.count = cpus.length
+
+        let sumCpu = cpus.reduce((x, y) => {
+          return {
+            speed: x.speed + y.speed,
+            load: x.load + y.load
+          }
+        }, {speed: 0, load: 0})
+
+        this.avgload = sumCpu.load / this.count
+        this.avgspeed = sumCpu.speed / this.count
+      },
+
+      getCpus: function() {
+        const os = require('os')
+
+        let lastCpus = this.lastCpus
+        let currCpus = os.cpus()
+
+        if(!lastCpus) {
+          lastCpus = currCpus
+        }
+
+        this.lastCpus = currCpus
+
+        return currCpus.map((core, i) => {
+          let dUser = core.times.user - lastCpus[i].times.user
+          let dNice = core.times.nice - lastCpus[i].times.nice
+          let dSys = core.times.sys - lastCpus[i].times.sys
+          let dIrq = core.times.irq - lastCpus[i].times.irq
+
+          let dIdle = core.times.idle - lastCpus[i].times.idle
+
+          let sumWork = dUser + dNice + dSys + dIrq
+
+          let total = dIdle + sumWork
+
+          return {
+            model: core.model,
+            speed: core.speed,
+            load: total == 0 ? 0 : Math.round(100 * sumWork / total)
+          }
+        })
+      }
+    })
+  </script>
+</dom-module>

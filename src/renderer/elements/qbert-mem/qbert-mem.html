@@ -1,0 +1,66 @@
+<dom-module id="qbert-mem">
+  <script>
+    'use strict'
+    Polymer({
+      is: 'qbert-mem',
+
+      hostAttributes: {
+        hidden: true
+      },
+
+      properties: {
+        interval: {
+          type: Number,
+          value: 0
+        },
+        total: {
+          type: Number,
+          notify: true
+        },
+        free: {
+          type: Number,
+          notify: true
+        },
+        used: {
+          type: Number,
+          notify: true
+        },
+        as: {
+          type: String,
+          value: 'b'
+        }
+      },
+
+      ready: function() {
+        this.execute()
+        if(this.interval >= 1) {
+          window.setInterval(this.execute.bind(this), this.interval * 1000)
+        }
+      },
+
+      execute: function() {
+        const os = require('os')
+        this.free = this.convert(os.freemem())
+        this.total = this.convert(os.totalmem())
+        this.used = this.total - this.free
+      },
+
+      convert: function(value) {
+        let conversionTable = {
+          b: 0,
+          kb: 1,
+          mb: 2,
+          gb: 3
+        }
+
+        let power = conversionTable[this.as.toLowerCase()]
+
+        if(typeof power == 'undefined') {
+          power = 0
+        }
+
+        return Math.round(parseInt(value) / Math.pow(1024, power))
+      }
+    })
+  </script>
+</dom-module>

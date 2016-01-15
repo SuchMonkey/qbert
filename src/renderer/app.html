@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -8,16 +8,20 @@
     <title>qBert-Panel</title>
 
     <!-- Load webcomponents and polymer -->
-    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script id="scriptloading" src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- Load qbert elements -->
     <link rel="import" href="../../bower_components/polymer/polymer.html">
-    <link rel="import" href="elements/qbert-panel/qbert-panel.html">
-    <link rel="import" href="elements/qbert-exec/qbert-exec.html">
-
-    <!-- Load app -->
-    <!--script src="app.js"></script-->
-
+    <link rel="import" href="./elements/qbert-panel/qbert-panel.html">
+    <link rel="import" href="./elements/qbert-exec/qbert-exec.html">
+    <link rel="import" href="./elements/qbert-mem/qbert-mem.html">
+    <link rel="import" href="./elements/qbert-cpu/qbert-cpu.html">
+    <link rel="import" href="./elements/qbert-time/qbert-time.html">
+    <link rel="import" href="./elements/qbert-system/qbert-system.html">
+    <!-- Load app.css -->
+    <link rel="stylesheet" href="app.css">
+    <!-- Load app.js -->
+    <script src="app.js"></script>
   </head>
   <body>
-    <qbert-panel>a</qbert-panel>
   </body>
 </html>

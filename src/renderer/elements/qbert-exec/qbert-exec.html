@@ -1,27 +1,29 @@
-<dom-module id="data-grid">
-  <template>
-    <content></content>
-  <template>
+<dom-module id="qbert-exec">
   <script>
     'use strict'
     Polymer({
-      is: 'data-grid',
+      is: 'qbert-exec',
+
+      hostAttributes: {
+        hidden: true
+      },
 
       properties: {
-        cmd: String,
-        interval: {
+        cmd: {
           type: String,
-          value: '0s'
+          value: ''
+        },
+        interval: {
+          type: Number,
+          value: 0
         },
         stdout: {
           type: String,
-          reflectToAttribute: true,
-          readOnly: true
+          notify: true
         },
         stderr: {
           type: String,
-          reflectToAttribute: true,
-          readOnly: true
+          notify: true
         },
         as: {
           type: String,
@@ -29,23 +31,33 @@
         }
       },
 
-
       ready: function() {
-        let intervalId = window.setInterval(execute, 5000)
+        if(this.cmd == '') {
+          return
+        }
+
+        this.execute()
+
+        if(this.interval >= 1) {
+          window.setInterval(this.execute.bind(this), this.interval * 1000)
+        }
       },
 
-      execute: function() {
-        const exec = require('child_process').exec
+      nodeExec: require('child_process').exec,
 
-        exec(this.cmd, (error, stdout, stderr) => {
+      execute: function() {
+
+        this.nodeExec(this.cmd, (error, stdout, stderr) => {
           if (error !== null) {
             console.log(`qbert-exec error: ${error}`)
+
+            return
           }
 
-          this.stdout = stdout
+          this.stdout = this.as == 'lines' ? stdout.split('\n') : stdout
           this.stderr = stderr
-        }
+        })
       }
-    });
+    })
   </script>
 </dom-module>

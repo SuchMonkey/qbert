@@ -122,7 +122,8 @@ The config below creates a frameless, transparent window on the desktop.
     "height": 500
   },
   "panel": {
-    "openDevTools": false
+    "openDevTools": false,
+    "disableInput": true
   }
 }
 ```

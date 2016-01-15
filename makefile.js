@@ -15,30 +15,12 @@ target.all = function() {
 target.build = function() {
   target.clean()
   target.babel()
-  target.copy()
-}
-
-target.copy = function() {
-  console.log('Copy [html, css] to %s', conf.dist)
-
-
-  cd(conf.src)
-
-  find('.').filter((file) => {
-    if(test('-d', file)) {
-      mkdir('-p', `../${conf.dist}${file}`)
-    }
-    return file.match(/\.html$|\.css$/) && test('-f', file)
-  }).forEach((file) => {
-    console.log(`    ${conf.src}${file} -> ${conf.dist}${file}`)
-    cp(file, `../${conf.dist}${file}`)
-  })
-
+  //target.copy()
 }
 
 target.babel = function() {
   console.log('Transpile [js] to %s', conf.dist)
-  let proc = nodeCLI.exec('babel', `${conf.src} --out-dir ${conf.dist} --source-maps`, {silent: true})
+  let proc = nodeCLI.exec('babel', `${conf.src} --out-dir ${conf.dist} --source-maps --copy-files`, {silent: true})
   console.log('-> babel: %s', proc.code)
   console.log(proc.output.trim().split('\n').map((x) => '    ' + x).join('\n'))
 }

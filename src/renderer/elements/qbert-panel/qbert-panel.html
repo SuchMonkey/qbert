@@ -1,44 +1,47 @@
 <dom-module id="qbert-panel">
   <template>
+    <style>
+      :host {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
 
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      :host([disableinput]) {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        cursor: default;
+
+      }
+    </style>
     <content></content>
-
-  <template>
+  </template>
 
   <script>
     'use strict'
-    console.log('asdf')
     Polymer({
       is: 'qbert-panel',
 
-
-      ready: function() {
-        console.log(window)
-        let _panel = window.__args__
-
-        console.log('qBert - %s', _panel.name)
-        console.log('Configuration %o', _panel.config)
-
-        document.querySelector('head').title = `qBert - ${_panel.name}`
-
-        // Load all elements
-        _panel.elements.forEach((_element) => this.loadItem(_element.path))
-
-        // Load the panel itself and append it to the body
-        this.loadItem(_panel.path, (doc) => Polymer.dom(this.root).appendChild(doc.body)
-
-
-
-      },
-
-      loadItem: function(href, callback) {
-        Polymer.Base.importHref(href, (e) => {
-          console.log('Loading item %o -> successful', e.target.import)
-          if(callback) callback(e.target.import)
-        }, () => {
-          console.error('Loading item %s -> failed', _panel.name)
-        })
+      properties: {
+        disableinput: {
+          type: Boolean,
+          value: true,
+          reflectToAttribute: window.__args__.config.panel.disableInput,
+          restamp: true
+        }
       }
-    });
+    })
   </script>
 </dom-module>
