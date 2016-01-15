@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   _panel.elements.forEach((_element) => loadItem(_element.path))
 
   // Load the panel itself and append it to the body
-  loadItem(_panel.path, (doc) => document.body.appendChild(doc.body))
+  loadItem(_panel.path, (doc) => document.getElementById('qbert-panel#content').appendChild(doc.body))
 
   function loadItem(href, callback) {
     Polymer.Base.importHref(href, (e) => {

@@ -1,0 +1,51 @@
+<dom-module id="data-grid">
+  <template>
+    <content></content>
+  <template>
+  <script>
+    'use strict'
+    Polymer({
+      is: 'data-grid',
+
+      properties: {
+        cmd: String,
+        interval: {
+          type: String,
+          value: '0s'
+        },
+        stdout: {
+          type: String,
+          reflectToAttribute: true,
+          readOnly: true
+        },
+        stderr: {
+          type: String,
+          reflectToAttribute: true,
+          readOnly: true
+        },
+        as: {
+          type: String,
+          value: 'text'
+        }
+      },
+
+
+      ready: function() {
+        let intervalId = window.setInterval(execute, 5000)
+      },
+
+      execute: function() {
+        const exec = require('child_process').exec
+
+        exec(this.cmd, (error, stdout, stderr) => {
+          if (error !== null) {
+            console.log(`qbert-exec error: ${error}`)
+          }
+
+          this.stdout = stdout
+          this.stderr = stderr
+        }
+      }
+    });
+  </script>
+</dom-module>
