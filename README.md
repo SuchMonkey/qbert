@@ -134,9 +134,9 @@ There are several custom elements available to help create useful system monitor
 
 ##### &lt;qbert-panel&gt;
 
-**qbert-panel** acts as a container. It is as big as the window itself and uses **border-box** as box-sizing. It is ideal for setting a border "around" the whole panel or defining a background color.
+...acts as a container. It is as big as the window itself and uses **border-box** as box-sizing. It is ideal for setting a border "around" the whole panel or defining a background color.
 
-Since Electron does currently not provide any native option to disable user input, **qbert-panel** uses CSS to prevent input. **qbert-panel** will read the "panel.disableInput" property from the panel configuration. Alternatively the attribute can be set directly.
+Since Electron currently doesn't provide any native option to disable user input, **qbert-panel** uses CSS to prevent input. Therefore it will read the "panel.disableInput" property from the panel configuration. Alternatively the attribute can be set directly to set/override the configuration.
 
 | Attribute       | Type            | Value           | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
@@ -144,14 +144,14 @@ Since Electron does currently not provide any native option to disable user inpu
 
 ##### &lt;qbert-cpu&gt;
 
-**qbert-cpu** provides CPU related statistics periodically. The cores attribute will be an Array of Objects:
+...periodically provides CPU related statistics. The "cores" attribute will be an Array of Objects:
 
 ```json
 [
   {
-    "model": "CPU name",
-    "speed": "Speed of core in MHz",
-    "load": "Load in percent"
+    "model": "CPU Model name",
+    "speed": 123,
+    "load": 50
   }
 ]
 ```
@@ -159,7 +159,7 @@ Since Electron does currently not provide any native option to disable user inpu
 | Attribute       | Type            | Value/Result    | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
 | interval        | Number          | **1** >= x >= i | Sample/Refresh rate in seconds |
-| *cores*         | Array[Object]   | [core{model,speed, load}] | Info for each core   |
+| *cores*         | Array[Object]   | [core {model, speed, load}] | Info for each core |
 | *count*         | Number          | 0 >= x >= i     | The number of cores            |
 | *avgload*       | Number          | 0 >= x >= 100   | The average load in percent    |
 | *avgspeed*      | Number          | 0 >= x >= i     | The average speed in MHz       |
@@ -167,7 +167,7 @@ Since Electron does currently not provide any native option to disable user inpu
 
 ##### &lt;qbert-mem&gt;
 
-**qbert-mem** provides Memory related information periodically.
+...provides Memory related information.
 
 | Attribute       | Type            | Value/Result    | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
@@ -180,40 +180,40 @@ Since Electron does currently not provide any native option to disable user inpu
 
 ##### &lt;qbert-time&gt;
 
-**qbert-time** provides date and time periodically.
+...periodically provides date and time.
 
 | Attribute       | Type            | Value/Result    | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
 | interval        | Number          | 0 - **1** >= x >= i | Refresh rate in seconds; 0 == no update |
 | format          | String          | [MomentJs](http://momentjs.com/docs/#/displaying/format/) | Time format string |
-| *time*          | String          | 26.07 12:33     | The formatted time string      |
+| *time*          | String          |                 | The formatted time string      |
 
 ##### &lt;qbert-exec&gt;
 
-**qbert-exec** lets you execute shell commands and retrieve their results. This can be done periodically.
+...lets you execute shell commands and retrieve their results. This can be done periodically.
 
 | Attribute       | Type            | Value/Result    | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
 | interval        | Number          | **0** >= x >= i | Refresh rate in seconds; 0 == no update |
 | as              | String          | **text**/lines  | Get stdout as string or as Array of lines |
 | cmd             | String          | "ls -la"        | The command to execute with space separated arguments |
-| *stdout*        | String/Array    | stdout/[line]   | stdout if successful           |
-| *stderr*        | String          | stderr          | stderr if not successful       |
+| *stdout*        | String/Array    |                 | stdout if successful           |
+| *stderr*        | String          |                 | stderr if not successful       |
 
 ##### &lt;qbert-system&gt;
 
-**qbert-system** provides some information about the os.
+...provides some information about the operating system.
 
 | Attribute       | Type            | Value/Result    | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
-| *arch*          | String          | 0 >= x >= i     | CPU architecture               |
-| *endian*        | String          | 0 >= x >= i     | CPU endianness                 |
-| *homedir*       | String          | 0 >= x >= i     | Users home directory           |
-| *hostname*      | String          | 0 >= x >= i     | The hostname of the system     |
-| *osname*        | String          | 0 >= x >= i     | Name of OS                     |
-| *platform*      | String          | 0 >= x >= i     | Name of OS platform            |
-| *release*       | String          | 0 >= x >= i     | The operating system release   |
-| *tmpdir*        | String          | 0 >= x >= i     | OS default temp directory      |
+| *arch*          | String          | x64/arm/ia32    | CPU architecture               |
+| *endian*        | String          | BE/LE           | CPU endianness                 |
+| *homedir*       | String          | /home/user/     | Users home directory           |
+| *hostname*      | String          |                 | The hostname of the system     |
+| *osname*        | String          |                 | Name of OS                     |
+| *platform*      | String          | darwin/freebsd/linux/sunos/win32 | Name of OS platform |
+| *release*       | String          |                 | The operating system release   |
+| *tmpdir*        | String          | /sys/temp/      | OS default temp directory      |
 
 ### Build from source
 
