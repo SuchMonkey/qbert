@@ -1,0 +1,11 @@
+{
+  "window": {
+    "x": 520,
+    "y": 100,
+    "width": 500,
+    "height": 500
+  },
+  "panel": {
+    "openDevTools": false
+  }
+}

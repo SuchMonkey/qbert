@@ -1,0 +1,14 @@
+{
+  "window": {
+    "show": false,
+    "skipTaskbar": true,
+    "frame": false,
+    "transparent": true,
+    "type": "desktop",
+    "resizeable": false
+  },
+  "panel": {
+    "openDevTools": false,
+    "disableInput": true
+  }
+}

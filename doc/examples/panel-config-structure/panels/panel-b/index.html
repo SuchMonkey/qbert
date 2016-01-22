@@ -1,0 +1,81 @@
+<link href='https://fonts.googleapis.com/css?family=Cousine:400,700' rel='stylesheet' type='text/css'>
+<style>
+  qbert-panel {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 10pt;
+    font-family: Cousine, "Lucida Console", Monaco, monospace;
+  }
+
+  .tag {
+    color: rgb(227, 109, 109);
+    font-weight: bold;
+  }
+  .attr {
+    color: rgb(202, 240, 98);
+    font-weight: normal;
+  }
+  .tag::before {
+    content: '<';
+  }
+  .tag::after {
+    content: '>';
+  }
+  .big {
+    color: rgb(227, 109, 109);
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+<qbert-panel>
+  <h1 class="big">panel-b</h1>
+  <template is="dom-bind">
+
+    <qbert-time format="DD.MM.YYYY HH:mm:ss" time="{{datetime}}"></qbert-time>
+    <p>
+      <span class="tag">qbert-time <span class="attr">format="DD.MM.YYYY HH:mm:ss" time="{{datetime}}"</span></span>
+      <span class="tag">/qbert-time</span>
+    </p>
+
+    <qbert-mem free="{{free}}" total="{{total}}" used="{{used}}" interval="2" as="mb"></qbert-mem>
+    <p>
+      <span class="tag">qbert-mem <span class="attr">free="{{free}}" total="{{total}}" used="{{used}}" interval="2" as="mb"</span></span>
+      <span class="tag">/qbert-mem</span>
+    </p>
+
+    <qbert-exec cmd="echo 1 && echo 2 && echo 3" as="lines" interval="5" stdout="{{outls}}" stderr="{{errls}}"></qbert-exec>
+    <p>
+      <span class="tag">qbert-exec <span class="attr">cmd="echo 1 &amp;&amp; echo 2 &amp;&amp; echo 3" as="lines" interval="5" stdout="{{outls}}" stderr="{{errls}}"</span></span>
+      <span class="tag">/qbert-exec</span>
+    </p>
+
+    <qbert-exec cmd="date" as="text" interval="1" stdout="{{outdate}}" stderr="{{errdate}}"></qbert-exec>
+    <p>
+      <span class="tag">qbert-exec <span class="attr">cmd="date" as="text" interval="1" stdout="{{outdate}}" stderr="{{errdate}}"</span></span>
+      <span class="tag">/qbert-exec</span>
+    </p>
+
+    <qbert-system arch="{{arch}}" endian="{{endian}}" homedir="{{homedir}}" hostname="{{hostname}}" osname="{{osname}}" platform="{{platform}}" release="{{release}}" tmpdir="{{tmpdir}}"></qbert-system>
+    <p>
+      <span class="tag">qbert-system <span class="attr">arch="{{arch}}" endian="{{endian}}" homedir="{{homedir}}" hostname="{{hostname}}" osname="{{osname}}" platform="{{platform}}" release="{{release}}" tmpdir="{{tmpdir}}"</span></span>
+      <span class="tag">/qbert-system</span>
+    </p>
+
+    <qbert-cpu interval="3" cores="{{cores}}" count="{{coreCount}}" avgload="{{avgLoad}}" avgSpeed="{{avgSpeed}}"></qbert-cpu>
+    <table>
+      <tr>
+        <th>Model</th>
+        <th>Speed ({{avgSpeed}}MHz)</th>
+        <th>Load ({{avgLoad}}%)</th>
+      </tr>
+      <template is="dom-repeat" items="{{cores}}">
+        <tr>
+          <td>{{item.model}}</td>
+          <td>{{item.speed}}MHz</td>
+          <td>{{item.load}}%</td>
+        </tr>
+      </template>
+    </table>
+  </template>
+</qbert-panel>
