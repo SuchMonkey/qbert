@@ -7,3 +7,11 @@ Since Electron currently doesn't provide any native option to disable user input
 | Attribute       | Type            | Value           | Description                    |
 | --------------- | --------------- | --------------- | ------------------------------ |
 | disableinput    | Boolean         | true/false      | Prevent user input via CSS     |
+
+## Example
+
+```html
+<qbert-panel style="background-color: rgba(0, 0, 0, 0.5); border: 1px solid black;">
+  <!-- Place panel stuff here in this nice transparent and bordered window. -->
+</qbert-panel>
+```
