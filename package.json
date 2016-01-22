@@ -13,10 +13,10 @@
     "bower": "^1.7.1",
     "electron-prebuilt": "^0.36.4",
     "shelljs": "^0.5.3",
-    "shelljs-nodecli": "^0.1.1",
-    "electron-prebuilt": "^0.36.4"
+    "shelljs-nodecli": "^0.1.1"
   },
   "dependencies": {
+    "app-module-path": "^1.0.5",
     "electron-window": "^0.6.2",
     "fs-jetpack": "^0.7.0",
     "lodash": "^3.10.1",

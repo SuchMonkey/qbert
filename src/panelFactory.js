@@ -63,11 +63,13 @@ function getItems(..._pathParts) {
 
   jetpack.list(_itemsPath).reduce((__items, __cItemName) => {
     let __itemPath = validatePath('file', _itemsPath, __cItemName, 'index.html')
+    let __itemNodeModules = validatePath('dir', _itemsPath, __cItemName, 'node_modules')
 
     if(__itemPath) {
       __items.push({
         name: __cItemName,
         path: __itemPath,
+        modulesPath: __itemNodeModules,
       })
     }
 
@@ -120,7 +122,7 @@ function getPanelsFromPath(_panelsPath) {
 
     return __panel
   })
-
+  console.log(JSON.stringify(_panels, '', ' '))
   return _panels
 }
 
