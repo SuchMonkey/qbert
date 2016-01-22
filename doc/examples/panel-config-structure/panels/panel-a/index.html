@@ -22,8 +22,14 @@
   .tag::after {
     content: '>';
   }
+  .big {
+    color: rgb(227, 109, 109);
+    font-weight: bold;
+    text-align: center;
+  }
 </style>
 <qbert-panel>
+  <h1 class="big">panel-a</h1>
   <template is="dom-bind">
 
     <qbert-time format="DD.MM.YYYY HH:mm:ss" time="{{datetime}}"></qbert-time>

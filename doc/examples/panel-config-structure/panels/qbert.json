@@ -1,6 +1,6 @@
 {
   "window": {
-    "show": false,
+    "show": true,
     "skipTaskbar": true,
     "frame": false,
     "transparent": true,

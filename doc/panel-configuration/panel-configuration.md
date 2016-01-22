@@ -97,4 +97,4 @@ The config below creates a frameless, transparent window on the desktop.
 
 # Example configuration
 
-You can find some panel examples [here](../examples).
+You can find some panel examples [here](../examples/panel-config-structure).
