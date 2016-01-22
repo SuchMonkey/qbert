@@ -116,7 +116,7 @@ function getPanelsFromPath(_panelsPath) {
     let __panelElements = getItems(__panel.path, '..', 'elements')
 
     __panel.elements = _.uniq(__panelElements.concat(_globalElements), 'name')
-    __panel.config = _.merge(DEFAULT_PANEL_CONF, _globalConfig, __panelConfig)
+    __panel.config = _.merge({}, DEFAULT_PANEL_CONF, _globalConfig, __panelConfig)
 
     return __panel
   })
