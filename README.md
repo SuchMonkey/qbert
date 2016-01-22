@@ -233,6 +233,12 @@ npm run package
 Use the issue tracker to report problems, suggestions and questions.
 You may also contribute by submitting pull requests.
 
+## Donations
+
+If you're feeling extra generous, you can also send me some BTC:
+
+1JCQ5L4DefZ6pRhh6kzfnTK25Kgnu75YjS
+
 ## License
 
 MIT © [SuchMonkey](http://github.com/SuchMonkey)
