@@ -39,13 +39,16 @@
     Polymer({
       is: 'qbert-panel',
 
+      // Defined attributes of the element
       properties: {
+
+        // Whether to allow input or not. Retrieves default value from config
         disableinput: {
           type: Boolean,
           value: true,
           reflectToAttribute: window.__args__.config.panel.disableInput,
-          restamp: true
-        }
+          restamp: true,
+        },
       }
     })
   </script>

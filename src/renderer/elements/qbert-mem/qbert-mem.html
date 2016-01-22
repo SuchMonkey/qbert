@@ -4,33 +4,52 @@
     Polymer({
       is: 'qbert-mem',
 
+      // Only a data provider; Nothing to show
       hostAttributes: {
         hidden: true
       },
 
+      // Defined attributes of the element
       properties: {
+
+        // Update interval in seconds
         interval: {
           type: Number,
           value: 0
         },
-        total: {
-          type: Number,
-          notify: true
-        },
-        free: {
-          type: Number,
-          notify: true
-        },
-        used: {
-          type: Number,
-          notify: true
-        },
+
+        // The unit the values should be converted to: b, kb, mb, gb
         as: {
           type: String,
           value: 'b'
-        }
+        },
+
+        // The total ammount of RAM available
+        total: {
+          type: Number,
+          notify: true,
+          readOnly: true,
+        },
+
+        // The ammount of "free" RAM
+        free: {
+          type: Number,
+          notify: true,
+          readOnly: true,
+        },
+
+        // The ammount of "used" RAM
+        used: {
+          type: Number,
+          notify: true,
+          readOnly: true,
+        },
       },
 
+      /**
+       * ready - Fired when the element got created and is ready. Starts
+       * update circle.
+       */
       ready: function() {
         this.execute()
         if(this.interval >= 1) {
@@ -38,13 +57,24 @@
         }
       },
 
+      /**
+       * execute - Function which gets executed each interval.
+       * Updates the element attributes with the new values.
+       */
       execute: function() {
         const os = require('os')
-        this.free = this.convert(os.freemem())
-        this.total = this.convert(os.totalmem())
-        this.used = this.total - this.free
+        this._setFree(this.convert(os.freemem()))
+        this._setTotal(this.convert(os.totalmem()))
+        this._setUsed(this.total - this.free)
       },
 
+
+      /**
+       * convert - Converts the ram values to the given unit
+       *
+       * @param  {type} value description
+       * @return {type}       description
+       */
       convert: function(value) {
         let conversionTable = {
           b: 0,

@@ -4,22 +4,35 @@
     Polymer({
       is: 'qbert-time',
 
+      // Only a data provider; Nothing to show
       hostAttributes: {
         hidden: true
       },
 
+      // Defined attributes of the element
       properties: {
+
+        // The format of the date time string. See moment.js documentation
         format: String,
+
+        // Update interval in seconds
         interval: {
           type: Number,
-          value: 1
+          value: 1,
         },
+
+        // The current time value
         time: {
           type: String,
-          notify: true
-        }
+          notify: true,
+          readOnly: true,
+        },
       },
 
+      /**
+       * ready - Fired when the element got created and is ready. Starts
+       * update circle.
+       */
       ready: function() {
         this.execute()
         if(this.interval >= 1) {
@@ -29,9 +42,13 @@
 
       moment: require('moment'),
 
+      /**
+       * execute - Function which gets executed each interval.
+       * Updates the element attributes with the new values.
+       */
       execute: function() {
-        this.time = this.moment().format(this.format)
-      }
+        this._setTime(this.moment().format(this.format))
+      },
     })
   </script>
 </dom-module>

@@ -4,33 +4,54 @@
     Polymer({
       is: 'qbert-cpu',
 
+      // Only a data provider; Nothing to show
       hostAttributes: {
         hidden: true
       },
 
+      // Defined attributes of the element
       properties: {
+
+        // Update/Sample interval in seconds
         interval: {
           type: Number,
-          value: 1
+          value: 1,
         },
+
+        // Array of CPU cores represented as object
         cores: {
           type: Array,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // Count of CPU cores
         count: {
           type: Number,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The average load of all CPU cores in %
         avgload: {
           type: Number,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The average speed of all CPU cores in MHz
         avgspeed: {
           type: Number,
-          notify: true
-        }
+          notify: true,
+          readOnly: true,
+        },
       },
 
+
+      /**
+       * ready - Fired when the element got created and is ready. Starts
+       * update/sample circle.
+       */
       ready: function() {
         this.execute()
         if(this.interval < 1) {
@@ -39,11 +60,16 @@
         window.setInterval(this.execute.bind(this), this.interval * 1000)
       },
 
+
+      /**
+       * execute - Function which gets executed each interval.
+       * Updates the element attributes with the new values.
+       */
       execute: function() {
         let cpus = this.getCpus()
 
-        this.cores = cpus
-        this.count = cpus.length
+        this._setCores(cpus)
+        this._setCount(cpus.length)
 
         let sumCpu = cpus.reduce((x, y) => {
           return {
@@ -52,10 +78,19 @@
           }
         }, {speed: 0, load: 0})
 
-        this.avgload = sumCpu.load / this.count
-        this.avgspeed = sumCpu.speed / this.count
+        this._setAvgload(sumCpu.load / this.count)
+        this._setAvgspeed(sumCpu.speed / this.count)
       },
 
+
+      /**
+       * getCpus - Returns the delta of each cpu core data set:
+       * New sample - old sample
+       * In particular the load of each core calculated from the cpu
+       * ticks.
+       *
+       * @return {array}  Array of CPU core sample information
+       */
       getCpus: function() {
         const os = require('os')
 

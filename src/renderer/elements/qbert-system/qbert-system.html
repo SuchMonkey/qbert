@@ -4,56 +4,86 @@
     Polymer({
       is: 'qbert-system',
 
+      // Only a data provider; Nothing to show
       hostAttributes: {
         hidden: true
       },
 
+      // Defined attributes of the element
       properties: {
+
+        // The CPU architecture
         arch: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The CPU endianness
         endian: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // User home directory
         homedir: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The hostname of the system
         hostname: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The name of the OS
         osname: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The name of the OS platform
         platform: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // The OS release
         release: {
           type: String,
-          notify: true
+          notify: true,
+          readOnly: true,
         },
+
+        // System default temp file location
         tmpdir: {
           type: String,
-          notify: true
-        }
+          notify: true,
+          readOnly: true,
+        },
       },
 
+      /**
+       * ready - Fired when the element got created and is ready. Updates
+       * the elements attributes with the fetched values.
+       */
       ready: function() {
         const os = require('os')
 
-        this.arch = os.arch()
-        this.endian = os.endianness()
-        this.homedir = os.homedir()
-        this.hostname = os.hostname()
-        this.osname = os.type()
-        this.platform = os.platform()
-        this.release = os.release()
-        this.tmpdir = os.tmpdir()
+        this._setArch(os.arch())
+        this._setEndian(os.endianness())
+        this._setHomedir(os.homedir())
+        this._setHostname(os.hostname())
+        this._setOsname(os.type())
+        this._setPlatform(os.platform())
+        this._setRelease(os.release())
+        this._setTmpdir(os.tmpdir())
       }
     })
   </script>

@@ -4,33 +4,51 @@
     Polymer({
       is: 'qbert-exec',
 
+      // Only a data provider; Nothing to show
       hostAttributes: {
         hidden: true
       },
 
+      // Defined attributes of the element
       properties: {
+
+        // The command to be executed
         cmd: {
           type: String,
-          value: ''
+          value: '',
         },
+
+        // Update interval in seconds
         interval: {
           type: Number,
-          value: 0
+          value: 0,
         },
-        stdout: {
-          type: String,
-          notify: true
-        },
-        stderr: {
-          type: String,
-          notify: true
-        },
+
+        // Whether to split the stdout of the command by line breaks or not
         as: {
           type: String,
-          value: 'text'
-        }
+          value: 'text',
+        },
+
+        // The stdout of the given command
+        stdout: {
+          type: String,
+          notify: true,
+          readOnly: true,
+        },
+
+        // The stderr of the given command
+        stderr: {
+          type: String,
+          notify: true,
+          readOnly: true,
+        },
       },
 
+      /**
+       * ready - Fired when the element got created and is ready. Starts
+       * update circle.
+       */
       ready: function() {
         if(this.cmd == '') {
           return
@@ -45,17 +63,20 @@
 
       nodeExec: require('child_process').exec,
 
+      /**
+       * execute - Function which gets executed each interval.
+       * Updates the element attributes with the new values.
+       */
       execute: function() {
 
         this.nodeExec(this.cmd, (error, stdout, stderr) => {
           if (error !== null) {
             console.log(`qbert-exec error: ${error}`)
-
             return
           }
 
-          this.stdout = this.as == 'lines' ? stdout.split('\n') : stdout
-          this.stderr = stderr
+          this._setStdout(this.as == 'lines' ? stdout.split('\n') : stdout)
+          this._setStderr(stderr)
         })
       }
     })
