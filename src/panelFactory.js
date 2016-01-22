@@ -122,7 +122,7 @@ function getPanelsFromPath(_panelsPath) {
 
     return __panel
   })
-  console.log(JSON.stringify(_panels, '', ' '))
+  
   return _panels
 }
 
