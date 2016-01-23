@@ -4,7 +4,7 @@
 access to system related data, needed to build basic monitoring panels.
 
 These elements do not deal with data representation. Instead they provide core functionality
-and thus can be seen as the core API for **qBert**.
+for data retrieval and thus can be seen as the core API for **qBert**.
 
   * [&lt;qbert-panel&gt;](qbert-panel.md) - Container element for a panel
   * [&lt;qbert-system&gt;](qbert-system.md) - System information

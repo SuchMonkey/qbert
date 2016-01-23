@@ -25,7 +25,7 @@ This element lets you execute shell commands and retrieve their results. This ca
     </ul>
     <!-- Use Polymer dom-if to display the error if there is one -->
     <template is="dom-if" if="{{error}}">
-      <p style="color: red;"><b>Darn this:<b> {{error}}</p>
+      <p style="color: red;"><b>Darn this:</b> {{error}}</p>
     </template>
   </template>
 </qbert-panel>
