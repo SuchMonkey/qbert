@@ -15,8 +15,8 @@ const CONFIG = getConfig(__dirname, '..', 'config', 'config.json')
 function getConfigPaths() {
   let userHome = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME']
 
-  return CONFIG.panelConfigDirectories.map((_dirParts) => {
-    _dirParts = _dirParts.map((__dirPart) => __dirPart.replace(/\%USERHOME\%/i, userHome))
+  return CONFIG.panelConfigDirectories.map(_dirParts => {
+    _dirParts = _dirParts.map(__dirPart => __dirPart.replace(/\%USERHOME\%/i, userHome))
     return path.join(..._dirParts)
   }).reduce((_configPaths, _configPath) => {
 
@@ -113,7 +113,7 @@ function getPanelsFromPath(_panelsPath) {
   let _globalElements = getItems(_panelsPath, 'elements')
   let _panels = getItems(_panelsPath, 'panels')
 
-  _panels.map((__panel) => {
+  _panels.map(__panel => {
     let __panelConfig = getConfig(__panel.path, '..', `${CONFIG.panelConfigFileName}.json`)
     let __panelElements = getItems(__panel.path, '..', 'elements')
 
@@ -122,7 +122,7 @@ function getPanelsFromPath(_panelsPath) {
 
     return __panel
   })
-  
+
   return _panels
 }
 
@@ -135,7 +135,7 @@ function getPanelsFromPath(_panelsPath) {
 export default function() {
   let _panels = []
 
-  getConfigPaths().forEach((__configPath) => {
+  getConfigPaths().forEach(__configPath => {
     _panels = _panels.concat(getPanelsFromPath(__configPath))
   })
 
